@@ -38,3 +38,28 @@ const result = () => {
 };
 
 result();
+
+// ---------------------------------------------------------------------------
+
+const p = new Promise((resolve, reject) => {
+
+  // Do the async task
+  setTimeout(() => {
+    resolve(1);
+  }, 3000);
+
+});
+
+// You can chain then method callbacks. Each then receives the result of the
+// previous then's return value.
+p.then(result => {
+  return result + 1;
+}).then(result => {
+  return result + 1;
+}).then(result => {
+  console.log(result);
+}).catch(err => {
+  // catch callback is executed when the promise is rejected
+  // do something with the reject result
+  console.error(err);
+});
